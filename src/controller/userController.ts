@@ -67,6 +67,16 @@ export async function loginController(req : Request , res : Response) : Promise<
         if(!user){
             return res.status(411).json("failed to login user")
         }
+
+
+        if(!jwtSecret){
+            console.log("jwt secret not found")
+            throw new Error("Internal server error")
+        }
+
+        const token = jwt.sign({email : user.email} , jwtSecret , {expiresIn : "1h"})
+
+        setCookie(token , res)
         return res.json({
             msg : "user logged in successfully",
             user : {

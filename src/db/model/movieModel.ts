@@ -6,21 +6,21 @@ class Movie extends Model<InferAttributes<Movie> , InferCreationAttributes<Movie
     declare theaterId : ForeignKey<number>
     declare movieName : string
     declare movieDuration : string
-    declare filledSeats : number
+    declare filledSeats? : number
     declare moviePrice : number 
     declare movieLaunchInTheater : Date
-    declare movieRemoveFromTheater : Date
+    declare movieRemovedFromTheater : Date
 }
 
 Movie.init({
         id : {type : DataTypes.INTEGER , autoIncrement : true , primaryKey : true},
         theaterId : {type : DataTypes.INTEGER , references : {model : "Theater", key : "id"}},
         movieName : {type : DataTypes.STRING , allowNull : false },
-        movieDuration : {type : DataTypes.FLOAT , allowNull : false },
+        movieDuration : {type : DataTypes.STRING , allowNull : false },
         filledSeats : {type : DataTypes.INTEGER , defaultValue : 0 },
         moviePrice : {type : DataTypes.INTEGER , allowNull : false},
         movieLaunchInTheater : {type : DataTypes.DATE , allowNull : false},
-        movieRemoveFromTheater : {type : DataTypes.DATE , defaultValue : null}
+        movieRemovedFromTheater : {type : DataTypes.DATE , defaultValue : null}
 },{
     tableName : "Movie",
     sequelize : sequelize,

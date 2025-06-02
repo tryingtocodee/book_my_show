@@ -7,7 +7,7 @@ class Booking extends Model <InferAttributes <Booking> , InferCreationAttributes
     declare theaterId : ForeignKey<number>
     declare movieId : ForeignKey<number>
     declare idempotencyKey : string
-    declare bookingStatus : "pending" | "cancelled" | "confirm"
+    declare bookingStatus : "pending" | "cancel" | "confirm"
     declare notificationSent : boolean
 }
 
