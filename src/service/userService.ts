@@ -20,6 +20,7 @@ export async function createUserService(userData : createUserDto){
             const uploadImage = await cloudinary.uploader.upload(userData.profilePic)
             userData.profilePic = uploadImage.secure_url
         }
+        
         const user = await createUserRepo(userData)
         
         if(!user){
