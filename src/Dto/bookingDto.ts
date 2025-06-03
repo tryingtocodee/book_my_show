@@ -3,6 +3,4 @@ export type createBookingDto = {
     theaterId : number
     movieId : number 
     idempotencyKey : string
-    bookingStatus : "pending" | "cancel" | "confirm"
-    notificationSent : boolean
 }

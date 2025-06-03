@@ -7,8 +7,9 @@ class Booking extends Model <InferAttributes <Booking> , InferCreationAttributes
     declare theaterId : ForeignKey<number>
     declare movieId : ForeignKey<number>
     declare idempotencyKey : string
-    declare bookingStatus : "pending" | "cancel" | "confirm"
-    declare notificationSent : boolean
+    declare bookingStatus?: "pending" | "cancel" | "confirm"
+    declare notificationSent? : boolean
+    declare pricePayed? : number
 }
 
 Booking.init({
@@ -18,7 +19,8 @@ Booking.init({
     movieId : {type : DataTypes.INTEGER , references : {model : "Movie", key : "id"}},
     idempotencyKey : {type : DataTypes.STRING , allowNull : false , unique : true },
     bookingStatus : {type : DataTypes.ENUM("pending" , "cancel" , "confirm") , defaultValue : "pending"},
-    notificationSent : {type : DataTypes.BOOLEAN , defaultValue : false}
+    notificationSent : {type : DataTypes.BOOLEAN , defaultValue : false},
+    pricePayed : {type : DataTypes.INTEGER , defaultValue : 0 }
 },{
     tableName : "Booking",
     sequelize : sequelize,
